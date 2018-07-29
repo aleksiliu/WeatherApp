@@ -1,0 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.error {
+  display: none;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 50px auto;
+  display: grid;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.weather {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.search-control > input,
+.search-control > button {
+    background-color: #e4f0f5;
+    color: #29627e;
+    font-size: 1.2rem;
+}
