@@ -32,6 +32,11 @@ function getWeatherFive() {
   });   
 }
 
+function getDayOfWeek(date) {
+  var dayOfWeek = new Date(date).getDay();    
+  return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+}
+
 function renderFive(data) {
   loader.classList.add('hide');
   loader.classList.remove("show");
@@ -47,8 +52,10 @@ function renderFive(data) {
     const date = document.createElement('p');
     const type = document.createElement('p');
 
+    let stringDate = weather.dt_txt.split(" ")[0];
+    
     temp.innerHTML = Math.round(weather.main.temp) + ' °C';
-    date.innerHTML = weather.dt_txt;
+    date.innerHTML = getDayOfWeek(stringDate);
     type.innerHTML = weather['weather'][0]['main'];
 
     div.appendChild(temp);
