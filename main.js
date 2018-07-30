@@ -40,7 +40,16 @@ function renderFive(data) {
       return true;
     }                
   })
-  console.log(filtered); 
+  let output = '<h2 class="header">5 day forecast</h2>';
+  filtered.forEach(function(weather){
+    output += `
+    <div>
+    <p>${weather.main.temp} °C <span class="time">${weather.dt_txt}</span></p>
+    <p>${weather['weather'][0]['main']}</p>
+    </div>
+    `;
+  }) 
+  weatherFive_div.innerHTML = output;
 }
 
 
@@ -62,6 +71,7 @@ function showError(message) {
   document.body.style.background = '#e74c3c';
   h1Error.style.display = 'block';
   h1Error.textContent = message;
+  weatherFive_div.innerHTML = '';
 }
 
 function render(data) {

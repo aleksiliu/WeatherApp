@@ -11,13 +11,14 @@
 .wrapper {
   max-width: 800px;
   margin: 50px auto;
-  display: grid;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 h1 {
   text-align: center;
-  margin-top: 40px;
 }
 
 .weather {
@@ -60,4 +61,20 @@ h1 {
 button {
   display: inline-flex;
   padding: 10px;
+}
+
+.weatherFive {
+  display: grid;
+  grid-template-areas:
+  'header header header header header';
+  margin-top: 40px;
+  grid-gap: 30px;
+}
+
+.header {
+  grid-area: header;
+}
+
+.time {
+  display: block;
 }
