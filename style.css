@@ -41,8 +41,8 @@ h1 {
   width: 24px;
   height: 24px;
   animation: spin 1s linear infinite;
-  display: none;
   margin-left: 10px;
+  display: none;
 }
 
 @keyframes spin {
@@ -50,11 +50,7 @@ h1 {
   100% { transform: rotate(360deg); }
 }
 
-.hide {
-  display: none;
-}
-
-.show {
+.active {
   display: block;
 }
 

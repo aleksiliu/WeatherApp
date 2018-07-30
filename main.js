@@ -20,14 +20,13 @@ form.addEventListener("submit", function(e){
 })
 
 function getWeatherFive() {
-  loader.classList.add('show');
+  loader.classList.add('active');
   fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${input.value}&units=metric&APPID=790b0cad877acccab6384572ca8dfa89`)
   .then(response => response.json())
   .then(function(data) {
     renderFive(data);
   })
   .catch(function() {
-    button.textContent = 'Search';
     showError('Something went wrong.');
   });   
 }
@@ -38,8 +37,7 @@ function getDayOfWeek(date) {
 }
 
 function renderFive(data) {
-  loader.classList.add('hide');
-  loader.classList.remove("show");
+  loader.classList.remove('active');
   let dataFive = data.list;
   const filtered = dataFive.filter(function(single) {
     if (single.dt_txt.includes('18:00:00') === true) {
@@ -67,7 +65,7 @@ function renderFive(data) {
 
 
 function getWeather() {
-  loader.classList.add('show');
+  loader.classList.add('active');
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=metric&APPID=790b0cad877acccab6384572ca8dfa89`)
   .then(response => response.json())
   .then(function(data) {
@@ -88,8 +86,7 @@ function showError(message) {
 }
 
 function render(data) {
-  loader.classList.add('hide');
-  loader.classList.remove("show");
+  loader.classList.remove('active');
   if (data.cod === 200) {
     weather_div.style.display = 'block';
     document.body.style.background = '#2ecc71';
