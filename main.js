@@ -14,6 +14,7 @@ form.addEventListener("submit", function(e){
   if (input.value.trim() === '') {
     return false;
   }
+  weatherFive_div.innerHTML = '';
   getWeather();
   getWeatherFive();
 })
@@ -36,20 +37,25 @@ function renderFive(data) {
   loader.classList.remove("show");
   let dataFive = data.list;
   const filtered = dataFive.filter(function(single) {
-    if (single.dt_txt.includes('18:00:00')) {
+    if (single.dt_txt.includes('18:00:00') === true) {
       return true;
     }                
   })
-  let output = '<h2 class="header">5 day forecast</h2>';
   filtered.forEach(function(weather){
-    output += `
-    <div>
-    <p>${weather.main.temp} °C <span class="time">${weather.dt_txt}</span></p>
-    <p>${weather['weather'][0]['main']}</p>
-    </div>
-    `;
+    const div = document.createElement('div');
+    const temp = document.createElement('p');
+    const date = document.createElement('p');
+    const type = document.createElement('p');
+
+    temp.innerHTML = Math.round(weather.main.temp) + ' °C';
+    date.innerHTML = weather.dt_txt;
+    type.innerHTML = weather['weather'][0]['main'];
+
+    div.appendChild(temp);
+    temp.appendChild(date);
+    div.appendChild(type);
+    weatherFive_div.appendChild(div);
   }) 
-  weatherFive_div.innerHTML = output;
 }
 
 
