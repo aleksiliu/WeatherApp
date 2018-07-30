@@ -9,6 +9,15 @@ const weatherFive_div = document.querySelector('.weatherFive');
 const h1Error = document.querySelector('.error');
 const loader = document.querySelector('.loader');
 
+const dateObj = new Date();
+const month = dateObj.getUTCMonth() + 1; //months from 1-12
+const day = dateObj.getUTCDate();
+const year = dateObj.getUTCFullYear();
+
+const newdate = year + "/" + month + "/" + day;
+
+console.log(newdate);
+
 form.addEventListener("submit", function(e){
   e.preventDefault();
   if (input.value.trim() === '') {
@@ -40,7 +49,8 @@ function renderFive(data) {
   loader.classList.remove('active');
   let dataFive = data.list;
   const filtered = dataFive.filter(function(single) {
-    if (single.dt_txt.includes('18:00:00') === true) {
+    console.log(single.dt_txt.includes(newdate));
+    if (single.dt_txt.includes('18:00:00') === true && single.dt_txt.includes(newdate) != true) {
       return true;
     }                
   })
