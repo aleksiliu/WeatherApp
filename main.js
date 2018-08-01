@@ -9,14 +9,9 @@ const weatherFive_div = document.querySelector('.weatherFive');
 const h1Error = document.querySelector('.error');
 const loader = document.querySelector('.loader');
 
-const dateObj = new Date();
-const month = dateObj.getUTCMonth() + 1; //months from 1-12
-const day = dateObj.getUTCDate();
-const year = dateObj.getUTCFullYear();
-
-const newdate = year + "/" + month + "/" + day;
-
-console.log(newdate);
+new Date().toISOString()
+new Date().toISOString().split('T')[0];
+const newdate = new Date().toISOString().split('T')[0];
 
 form.addEventListener("submit", function(e){
   e.preventDefault();
@@ -49,11 +44,11 @@ function renderFive(data) {
   loader.classList.remove('active');
   let dataFive = data.list;
   const filtered = dataFive.filter(function(single) {
-    console.log(single.dt_txt.includes(newdate));
-    if (single.dt_txt.includes('18:00:00') === true && single.dt_txt.includes(newdate) != true) {
+    if (single.dt_txt.includes('18:00:00') === true && single.dt_txt.includes(newdate) !== true) {
       return true;
     }                
   })
+
   filtered.forEach(function(weather){
     const div = document.createElement('div');
     const temp = document.createElement('p');
@@ -101,7 +96,7 @@ function render(data) {
     weather_div.style.display = 'block';
     document.body.style.background = '#2ecc71';
     h1Error.style.display = 'none';
-    h1.innerHTML = `${data.name}, ${data.sys.country}`;
+    h1.innerHTML = `<span class="today">Today</span> <br/> ${data.name}, ${data.sys.country}`;
     h2.innerHTML = `${data.main.temp} °C`;
     p.innerHTML = data['weather'][0]['main'];
   } else if (data.cod === '404') {

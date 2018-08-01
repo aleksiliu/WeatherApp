@@ -74,3 +74,9 @@ button {
 .time {
   display: block;
 }
+
+.today {
+  font-size: 18px;
+  color: green;
+  text-transform: uppercase;
+}
